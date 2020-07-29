@@ -2,14 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CameraType
+{
+    ObjectFront,
+    Reset,
+    FadeOut,
+    FadeIn,
+    FlashOut,
+    FlashIn,
+}
+
 [System.Serializable]
 public class Dialogue
 {
-    [Tooltip("대사 치는 캐릭터 이름")]
+    [Header("타겟팅 할 대상")]
+    public CameraType camType;
+    public Transform tf_target;
+
+    [HideInInspector]
     public string name;
 
-    [Tooltip("대사 내용")]
+    [HideInInspector]
     public string[] contexts;
+
+    [HideInInspector]
+    public string[] spriteName;
+
+    [HideInInspector]
+    public string[] VoiceName;
 }
 
 [System.Serializable]

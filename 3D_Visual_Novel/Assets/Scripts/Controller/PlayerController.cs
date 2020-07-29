@@ -23,6 +23,12 @@ public class PlayerController : MonoBehaviour
 
     float originPosY;
 
+    public void Reset()
+    {
+        currentAngleX = 0;
+        currentAngleY = 0;
+    }
+
     private void Start()
     {
         originPosY = 1; // tf_Cam.localEulerAngles.y
@@ -83,6 +89,7 @@ public class PlayerController : MonoBehaviour
             currentAngleX = Mathf.Clamp(currentAngleX, -lookLimitY, lookLimitY);
             tf_Cam.localPosition = new Vector3(tf_Cam.localPosition.x, tf_Cam.localPosition.y + sightMoveSpeed * v, tf_Cam.localPosition.z);
         }
+
         tf_Cam.localEulerAngles = new Vector3(currentAngleX, currentAngleY, tf_Cam.localEulerAngles.z);
     }
 

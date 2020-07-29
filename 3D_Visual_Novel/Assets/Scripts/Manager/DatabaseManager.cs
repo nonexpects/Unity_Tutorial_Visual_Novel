@@ -8,7 +8,7 @@ public class DatabaseManager : MonoBehaviour
 
     [SerializeField] string csv_FileName;
 
-    Dictionary<int, Dialogue> dialougeDic = new Dictionary<int, Dialogue>();
+    Dictionary<int, Dialogue> dialogueDic = new Dictionary<int, Dialogue>();
 
     //저장이 끝났는지 확인
     public static bool isFinish = false;
@@ -19,24 +19,24 @@ public class DatabaseManager : MonoBehaviour
         {
             instance = this;
             DialogueParser theParser = GetComponent<DialogueParser>();
-            Dialogue[] dialogues = theParser.Parse(csv_FileName);
+             Dialogue[] dialogues = theParser.Parse(csv_FileName);
 
             for (int i = 0; i < dialogues.Length; i++)
             {
-                dialougeDic.Add(i + 1, dialogues[i]);
+                dialogueDic.Add(i + 1, dialogues[i]);
             }
 
             isFinish = true;
         }
     }
 
-    public Dialogue[] GetDialogue(int _startNum, int _EndNum)
+    public Dialogue[] GetDialogue(int _StartNum, int _EndNum)
     {
         List<Dialogue> dialogueList = new List<Dialogue>();
 
-        for (int i = 0; i <= _EndNum - _startNum; i++)
+        for (int i = 0; i <= _EndNum - _StartNum; i++)
         {
-            dialogueList.Add(dialogueList[_startNum + i]);
+            dialogueList.Add(dialogueDic[_StartNum + i]);
         }
 
         return dialogueList.ToArray();
